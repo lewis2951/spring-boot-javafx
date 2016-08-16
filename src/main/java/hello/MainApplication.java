@@ -42,7 +42,7 @@ public class MainApplication extends Application {
 
 		worker.setOnSucceeded(event -> {
 			try {
-				logger.info("Spring content is loading successful! Application will come soon.");
+				logger.info("Loading Spring successful! Application will come soon.");
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Info");
@@ -51,22 +51,22 @@ public class MainApplication extends Application {
 				alert.show();
 
 			} catch (Exception ex) {
-				logger.error("Gagal load JavaFX Application", ex);
+				logger.error("Loading Application Error.", ex);
 			}
 		});
 
 		worker.setOnFailed(event -> {
 			try {
-				logger.error("Spring 容器加载失败，开始退出程序 ......");
+				logger.error("Loading Spring Failing! Application will shutdown now.");
 
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				// alert.setHeaderText("HeaderText");
-				alert.setContentText("ContentText");
+				alert.setContentText("Loading Spring Failing! Application will shutdown now.");
 				alert.show();
 
 			} catch (Exception ex) {
-				logger.error("退出程序出现异常 ......", ex);
+				logger.error("Shutdown Application Error.", ex);
 			}
 		});
 	}
