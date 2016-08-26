@@ -74,7 +74,8 @@ public class MainApplication extends Application {
 				stage.centerOnScreen();
 				stage.show();
 
-				homeController.showLoginForm();
+				homeController.initConstuct();
+				homeController.showWelcome();
 
 				Notifications.create().title("标题").text("内容").position(Pos.BOTTOM_RIGHT).hideAfter(Duration.seconds(5))
 						.showInformation();

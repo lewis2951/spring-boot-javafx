@@ -5,12 +5,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 
-	<top></top>
-	<center></center>
-	<bottom></bottom>
+	<top>
+		<MenuBar fx:id="menuBar" />
+	</top>
+	<center>
+		<BorderPane fx:id="context" />
+	</center>
+	<bottom>
+		<StatusBar fx:id="statusBar" />
+	</bottom>
 
 	<stylesheets>
 		<URL value="@/css/default.css" />

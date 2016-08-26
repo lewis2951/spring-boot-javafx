@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox spacing="5" xmlns:fx="http://javafx.com/fxml/1">
+
+	<padding>
+		<Insets left="5" right="5" top="5" bottom="5" />
+	</padding>
+
+	<Label text="aaa" />
+	<Label text="aaa" />
+	<Label text="aaa" />
+	<Label text="aaa" />
+	<Label text="aaa" />
+
+	<stylesheets>
+		<URL value="@/css/default.css" />
+	</stylesheets>
+
+</VBox>

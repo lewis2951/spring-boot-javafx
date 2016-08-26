@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.StatusBar;
 import org.controlsfx.dialog.ExceptionDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -33,9 +35,16 @@ public class HomeController implements BootInitializable {
 	private ApplicationContext springContext;
 
 	@Autowired
-	private LoginController loginForm;
+	private LoginController loginController;
+	@Autowired
+	private WelcomeController welcomeController;
+
 	@FXML
-	private BorderPane contentLayout;
+	private MenuBar menuBar;
+	@FXML
+	private BorderPane context;
+	@FXML
+	private StatusBar statusBar;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -67,21 +76,39 @@ public class HomeController implements BootInitializable {
 
 	}
 
-	public void setLayout(Node anNode) {
-		DoubleProperty opacity = anNode.opacityProperty();
-		anNode.setOpacity(0.0);
-		contentLayout.setCenter(anNode);
+	public void setLayout(Node node) {
+		DoubleProperty opacity = node.opacityProperty();
+		node.setOpacity(0.0);
+		context.setCenter(node);
 		Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
 				new KeyFrame(new Duration(1000), new KeyValue(opacity, 1.0)));
 		fadeIn.play();
-		contentLayout.getCenter().autosize();
+		context.getCenter().autosize();
 	}
 
 	@FXML
-	public void showLoginForm() {
+	public void showWelcome() {
 		try {
-			setLayout(loginForm.initView());
-			loginForm.initConstuct();
+			setLayout(welcomeController.initView());
+			welcomeController.initConstuct();
+
+		} catch (Exception e) {
+			logger.error("欢迎页面加载异常", e);
+
+			Stage stage = springContext.getBean(Stage.class);
+
+			ExceptionDialog ex = new ExceptionDialog(e);
+			ex.initOwner(stage);
+			ex.show();
+
+		}
+	}
+
+	@FXML
+	public void showLogin() {
+		try {
+			setLayout(loginController.initView());
+			loginController.initConstuct();
 
 		} catch (Exception e) {
 			logger.error("登录页面加载异常", e);
