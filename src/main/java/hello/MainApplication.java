@@ -46,16 +46,17 @@ public class MainApplication extends Application {
 
 	public static void main(String[] args) {
 		Locale.setDefault(new Locale("zh", "CN"));
-		MainApplication.mainArgs = args;
+		mainArgs = args;
 		Application.launch(MainApplication.class, args);
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Task<Object> worker = new Task<Object>() {
+
 			@Override
 			protected Object call() throws Exception {
-				springContext = SpringApplication.run(MainApplication.class, MainApplication.mainArgs);
+				springContext = SpringApplication.run(MainApplication.class, mainArgs);
 				return null;
 			}
 		};
@@ -63,20 +64,20 @@ public class MainApplication extends Application {
 
 		worker.setOnSucceeded(event -> {
 			try {
-				logger.info("Loading Spring successful! Application will come soon.");
+				logger.info("Loading Spring successful, Application will come soon.");
 
-				HomeController scene = springContext.getBean(HomeController.class);
+				HomeController homeController = springContext.getBean(HomeController.class);
 				Stage stage = springContext.getBean(Stage.class);
 
-				Parent root = (Parent) scene.initView();
+				Parent root = (Parent) homeController.initView();
 				stage.setScene(new Scene(root, 960, 680));
 				stage.centerOnScreen();
 				stage.show();
 
-				// scene.showLoginForm();
+				homeController.showLoginForm();
 
-				Notifications.create().title("右下角").text("我就是个提示消息").position(Pos.BOTTOM_RIGHT)
-						.hideAfter(Duration.minutes(1)).showInformation();
+				Notifications.create().title("标题").text("内容").position(Pos.BOTTOM_RIGHT).hideAfter(Duration.seconds(5))
+						.showInformation();
 
 			} catch (Exception ex) {
 				logger.error("Loading Application Error.", ex);
@@ -85,12 +86,10 @@ public class MainApplication extends Application {
 
 		worker.setOnFailed(event -> {
 			try {
-				logger.error("Loading Spring Failing! Application will shutdown now.");
+				logger.error("Loading Spring Failing, Application will shutdown now.");
 
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error");
-				// alert.setHeaderText("HeaderText");
-				alert.setContentText("Loading Spring Failing! Application will shutdown now.");
+				alert.setContentText("Loading Spring Failing, Application will shutdown now.");
 				alert.show();
 
 			} catch (Exception ex) {

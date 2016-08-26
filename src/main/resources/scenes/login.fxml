@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<top>
+		<VBox alignment="CENTER" spacing="5.0" styleClass="header"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Text id="corp" strokeType="OUTSIDE" strokeWidth="0.0"
+					text="PT.Spektra Adhya Prasarana" />
+				<Text id="profile" layoutX="217.0" layoutY="32.0" strokeType="OUTSIDE"
+					strokeWidth="0.0" text="Consultant Engineering" />
+				<Text id="address" layoutX="234.0" layoutY="53.0" strokeType="OUTSIDE"
+					strokeWidth="0.0" text="Jl.Sidoluhur No.18-20, Bandung" />
+			</children>
+			<padding>
+				<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+			</padding>
+		</VBox>
+	</top>
+	<center>
+		<GridPane hgap="10.0" stylesheets="@../../stylesheet/JMetroLightTheme.css"
+			vgap="10.0" BorderPane.alignment="CENTER">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0"
+					minWidth="100.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0"
+					minWidth="150.0" prefWidth="150.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0"
+					minWidth="150.0" prefWidth="150.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="1.7976931348623157E308"
+					vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+					vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="40.0" minHeight="40.0"
+					prefHeight="40.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+					vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="40.0" minHeight="40.0"
+					prefHeight="40.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="-Infinity" minHeight="-Infinity"
+					vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="35.0" minHeight="35.0"
+					prefHeight="35.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="1.7976931348623157E308"
+					vgrow="SOMETIMES" />
+			</rowConstraints>
+			<children>
+				<Label styleClass="label-content" text="Pengguna"
+					GridPane.columnIndex="1" GridPane.rowIndex="1" />
+				<AnchorPane prefHeight="200.0" prefWidth="200.0"
+					GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
+					<children>
+						<TextField fx:id="txtUsername" alignment="CENTER"
+							layoutX="119.0" layoutY="1.0" prefHeight="30.0" prefWidth="320.0"
+							promptText="Username" AnchorPane.bottomAnchor="0.0"
+							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+							AnchorPane.topAnchor="0.0" />
+					</children>
+				</AnchorPane>
+				<Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-content"
+					text="Kode keamanan" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="3"
+					GridPane.rowIndex="4">
+					<children>
+						<PasswordField fx:id="txtPassword" alignment="CENTER"
+							prefHeight="30.0" prefWidth="171.0" promptText="Password"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+					</children>
+				</AnchorPane>
+				<Label fx:id="labelSuccess" styleClass="status-error"
+					text="Input username &amp; password please!" textFill="RED"
+					GridPane.columnIndex="1" GridPane.columnSpan="2147483647"
+					GridPane.rowIndex="5">
+					<font>
+						<Font name="System Bold" size="15.0" />
+					</font>
+				</Label>
+				<AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="6">
+					<children>
+						<Button fx:id="btnLogin" defaultButton="true" disable="true"
+							mnemonicParsing="false" onAction="#doSignIn" prefHeight="30.0"
+							prefWidth="100.0" styleClass="action" text="Login"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+					</children>
+				</AnchorPane>
+				<AnchorPane layoutX="260.0" layoutY="147.0"
+					GridPane.columnIndex="3" GridPane.rowIndex="6">
+					<children>
+						<Button fx:id="btnExit" mnemonicParsing="false" onAction="#doExit"
+							prefHeight="30.0" prefWidth="100.0" styleClass="action" text="Exit"
+							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+					</children>
+				</AnchorPane>
+			</children>
+			<padding>
+				<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+			</padding>
+		</GridPane>
+	</center>
+
+	<stylesheets>
+		<URL value="@/css/default.css" />
+	</stylesheets>
+
+</BorderPane>

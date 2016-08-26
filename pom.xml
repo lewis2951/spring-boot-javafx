@@ -15,6 +15,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		
+		<controlsfx.version>8.40.11</controlsfx.version>
 	</properties>
 
 	<dependencies>
@@ -34,7 +36,7 @@
 		<dependency>
 			<groupId>org.controlsfx</groupId>
 			<artifactId>controlsfx</artifactId>
-			<version>8.40.10</version>
+			<version>${controlsfx.version}</version>
 		</dependency>
 
 		<dependency>

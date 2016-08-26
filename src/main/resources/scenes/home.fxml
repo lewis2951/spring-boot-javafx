@@ -6,13 +6,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox spacing="0" xmlns:fx="http://javafx.com/fxml">
-	<padding>
-		<Insets top="0" bottom="0" left="0" right="0" />
-	</padding>
+<BorderPane xmlns:fx="http://javafx.com/fxml">
+
+	<top></top>
+	<center></center>
+	<bottom></bottom>
 
 	<stylesheets>
 		<URL value="@/css/default.css" />
 	</stylesheets>
 
-</VBox>
+</BorderPane>
