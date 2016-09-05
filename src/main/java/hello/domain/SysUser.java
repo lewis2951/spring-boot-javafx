@@ -17,7 +17,7 @@ public class SysUser implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 
 	@Column(name = "SN")
 	private String sn;
@@ -32,11 +32,18 @@ public class SysUser implements Serializable {
 		super();
 	}
 
-	public long getId() {
+	public SysUser(String sn, String pwd, String fullName) {
+		super();
+		this.sn = sn;
+		this.pwd = pwd;
+		this.fullName = fullName;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
