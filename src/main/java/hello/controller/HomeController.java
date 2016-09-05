@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.StatusBar;
 import org.controlsfx.dialog.ExceptionDialog;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -22,7 +24,9 @@ import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -43,6 +47,8 @@ public class HomeController implements BootInitializable {
 	private MenuBar menuBar;
 	@FXML
 	private BorderPane context;
+	@FXML
+	private ToolBar toolBar;
 	@FXML
 	private StatusBar statusBar;
 
@@ -73,7 +79,16 @@ public class HomeController implements BootInitializable {
 
 	@Override
 	public void initConstuct() {
+		statusBar.getLeftItems().add(new Button("Info"));
+		statusBar.setProgress(.5);
 
+		toolBar.getItems().addAll(new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.STAR)),
+				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.ADJUST)),
+				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.APPLE)),
+				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.HOME)),
+				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.WEIBO)),
+				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.WEIXIN)),
+				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.BACKWARD)));
 	}
 
 	public void setLayout(Node node) {

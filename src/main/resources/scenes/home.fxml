@@ -13,7 +13,11 @@
 		<MenuBar fx:id="menuBar" />
 	</top>
 	<center>
-		<BorderPane fx:id="context" />
+		<BorderPane fx:id="context">
+			<top>
+				<ToolBar fx:id="toolBar" />
+			</top>
+		</BorderPane>
 	</center>
 	<bottom>
 		<StatusBar fx:id="statusBar" />

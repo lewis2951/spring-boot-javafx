@@ -37,12 +37,12 @@ public class MainApplication extends Application {
 	// return new ValidationSupport();
 	// }
 
-//	@Bean()
-//	public Stage getStage() {
-//		Stage newStage = new Stage(StageStyle.DECORATED);
-//		newStage.setTitle("JavaFX by Spring Boot 1.4.0.RELEASE");
-//		return newStage;
-//	}
+	@Bean()
+	public Stage getStage() {
+		Stage newStage = new Stage(StageStyle.DECORATED);
+		newStage.setTitle("JavaFX by Spring Boot 1.4.0.RELEASE");
+		return newStage;
+	}
 
 	public static void main(String[] args) {
 		Locale.setDefault(new Locale("zh", "CN"));
