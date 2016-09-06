@@ -10,18 +10,11 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 
 	<top>
-		<MenuBar fx:id="menuBar" />
+		<ToolBar fx:id="toolBar"></ToolBar>
 	</top>
 	<center>
-		<BorderPane fx:id="context">
-			<top>
-				<ToolBar fx:id="toolBar" />
-			</top>
-		</BorderPane>
+		
 	</center>
-	<bottom>
-		<StatusBar fx:id="statusBar" />
-	</bottom>
 
 	<stylesheets>
 		<URL value="@/css/default.css" />

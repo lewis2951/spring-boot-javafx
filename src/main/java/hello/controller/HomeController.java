@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.StatusBar;
 import org.controlsfx.dialog.ExceptionDialog;
 import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
+import org.controlsfx.glyphfont.GlyphFont;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -20,14 +20,15 @@ import hello.configs.BootInitializable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.Separator;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -43,10 +44,6 @@ public class HomeController implements BootInitializable {
 	@Autowired
 	private WelcomeController welcomeController;
 
-	@FXML
-	private MenuBar menuBar;
-	@FXML
-	private BorderPane context;
 	@FXML
 	private ToolBar toolBar;
 	@FXML
@@ -79,26 +76,35 @@ public class HomeController implements BootInitializable {
 
 	@Override
 	public void initConstuct() {
-		statusBar.getLeftItems().add(new Button("Info"));
-		statusBar.setProgress(.5);
+		initToolBar();
+	}
 
-		toolBar.getItems().addAll(new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.STAR)),
-				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.ADJUST)),
-				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.APPLE)),
-				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.HOME)),
-				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.WEIBO)),
-				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.WEIXIN)),
-				new Button("", new Glyph("FontAwesome", FontAwesome.Glyph.BACKWARD)));
+	private void initToolBar() {
+		GlyphFont fontAwesome = springContext.getBean(GlyphFont.class);
+
+		Button home = new Button("", fontAwesome.create(FontAwesome.Glyph.HOME));
+
+		Button sign_in = new Button("", fontAwesome.create(FontAwesome.Glyph.SIGN_IN));
+		sign_in.setDefaultButton(true);
+
+		Button sign_out = new Button("", fontAwesome.create(FontAwesome.Glyph.SIGN_OUT));
+
+		Button power_off = new Button("", fontAwesome.create(FontAwesome.Glyph.POWER_OFF).color(Color.RED));
+		power_off.setOnAction(event -> {
+			close();
+		});
+
+		toolBar.getItems().addAll(home, new Separator(), sign_in, new Separator(), power_off);
 	}
 
 	public void setLayout(Node node) {
 		DoubleProperty opacity = node.opacityProperty();
 		node.setOpacity(0.0);
-		context.setCenter(node);
+		// context.setCenter(node);
 		Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
 				new KeyFrame(new Duration(1000), new KeyValue(opacity, 1.0)));
 		fadeIn.play();
-		context.getCenter().autosize();
+		// context.getCenter().autosize();
 	}
 
 	@FXML
@@ -135,6 +141,11 @@ public class HomeController implements BootInitializable {
 			ex.show();
 
 		}
+	}
+
+	@FXML
+	public void close() {
+		Platform.exit();
 	}
 
 }

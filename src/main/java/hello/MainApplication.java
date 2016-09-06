@@ -3,6 +3,8 @@ package hello;
 import java.util.Locale;
 
 import org.controlsfx.control.Notifications;
+import org.controlsfx.glyphfont.GlyphFont;
+import org.controlsfx.glyphfont.GlyphFontRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -37,7 +39,13 @@ public class MainApplication extends Application {
 	// return new ValidationSupport();
 	// }
 
-	@Bean()
+	@Bean
+	public GlyphFont getGlyphFont() {
+		GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
+		return fontAwesome;
+	}
+
+	@Bean
 	public Stage getStage() {
 		Stage newStage = new Stage(StageStyle.DECORATED);
 		newStage.setTitle("JavaFX by Spring Boot 1.4.0.RELEASE");
