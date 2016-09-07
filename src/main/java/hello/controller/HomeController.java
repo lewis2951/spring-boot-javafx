@@ -26,7 +26,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Separator;
 import javafx.scene.control.ToolBar;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -84,17 +83,18 @@ public class HomeController implements BootInitializable {
 
 		Button home = new Button("", fontAwesome.create(FontAwesome.Glyph.HOME));
 
+		Button reorder = new Button("", fontAwesome.create(FontAwesome.Glyph.REORDER));
+
 		Button sign_in = new Button("", fontAwesome.create(FontAwesome.Glyph.SIGN_IN));
-		sign_in.setDefaultButton(true);
 
 		Button sign_out = new Button("", fontAwesome.create(FontAwesome.Glyph.SIGN_OUT));
 
-		Button power_off = new Button("", fontAwesome.create(FontAwesome.Glyph.POWER_OFF).color(Color.RED));
+		Button power_off = new Button("", fontAwesome.create(FontAwesome.Glyph.POWER_OFF).color(Color.BROWN));
 		power_off.setOnAction(event -> {
 			close();
 		});
 
-		toolBar.getItems().addAll(home, new Separator(), sign_in, new Separator(), power_off);
+		toolBar.getItems().addAll(home, reorder, sign_in, sign_out, power_off);
 	}
 
 	public void setLayout(Node node) {
