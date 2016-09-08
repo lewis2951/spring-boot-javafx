@@ -83,7 +83,9 @@ public class HomeController implements BootInitializable {
 
 		Button home = new Button("", fontAwesome.create(FontAwesome.Glyph.HOME));
 
-		Button reorder = new Button("", fontAwesome.create(FontAwesome.Glyph.REORDER));
+		Button bars = new Button("", fontAwesome.create(FontAwesome.Glyph.BARS));
+
+		Button globe = new Button("", fontAwesome.create(FontAwesome.Glyph.GLOBE));
 
 		Button sign_in = new Button("", fontAwesome.create(FontAwesome.Glyph.SIGN_IN));
 
@@ -94,7 +96,8 @@ public class HomeController implements BootInitializable {
 			close();
 		});
 
-		toolBar.getItems().addAll(home, reorder, sign_in, sign_out, power_off);
+		toolBar.getItems().clear();
+		toolBar.getItems().addAll(home, bars, globe, sign_in, sign_out, power_off);
 	}
 
 	public void setLayout(Node node) {
