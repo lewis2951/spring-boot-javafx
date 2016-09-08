@@ -5,15 +5,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import org.controlsfx.control.*?>
+<?import javafx.scene.paint.*?>
+
+<?import org.controlsfx.glyphfont.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 
 	<top>
-		<ToolBar fx:id="toolBar"></ToolBar>
+		<ToolBar fx:id="toolBar">
+			<items>
+				<Button>
+					<graphic><Glyph fontFamily="FontAwesome" icon="HOME" /></graphic>
+				</Button>
+				<Button>
+					<graphic><Glyph fontFamily="FontAwesome" icon="BARS" /></graphic>
+				</Button>
+				<Button onAction="#showWebsite">
+					<graphic><Glyph fontFamily="FontAwesome" icon="GLOBE" /></graphic>
+				</Button>
+				<Button>
+					<graphic><Glyph fontFamily="FontAwesome" icon="SIGN_IN" /></graphic>
+				</Button>
+				<Button>
+					<graphic><Glyph fontFamily="FontAwesome" icon="SIGN_OUT" /></graphic>
+				</Button>
+				<Button onAction="#close">
+					<graphic><Glyph fx:id="closeBtn" fontFamily="FontAwesome" icon="POWER_OFF" /></graphic>
+				</Button>
+			</items>
+		</ToolBar>
 	</top>
+
 	<center>
-		
+		<ScrollPane fx:id="content" fitToWidth="true" fitToHeight="true"
+			BorderPane.alignment="TOP_CENTER" />
 	</center>
 
 	<stylesheets>

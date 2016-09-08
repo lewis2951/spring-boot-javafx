@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+
+<?import org.controlsfx.glyphfont.*?>
+
+<VBox spacing="2" xmlns:fx="http://javafx.com/fxml">
+	<padding>
+		<Insets left="0" right="0" top="0" bottom="0" />
+	</padding>
+
+	<HBox spacing="3">
+		<padding>
+			<Insets left="3" right="3" top="3" bottom="3" />
+		</padding>
+
+		<Button fx:id="lastBtn">
+			<graphic><Glyph fontFamily="FontAwesome" icon="ARROW_LEFT" /></graphic>
+		</Button>
+		<Button fx:id="nextBtn">
+			<graphic><Glyph fontFamily="FontAwesome" icon="ARROW_RIGHT" /></graphic>
+		</Button>
+		<Button fx:id="repeatBtn">
+			<graphic><Glyph fontFamily="FontAwesome" icon="REPEAT" /></graphic>
+		</Button>
+		<TextField fx:id="locationField" HBox.hgrow="ALWAYS"
+			onAction="#goAction" />
+
+		<Button onAction="#goAction">
+			<graphic><Glyph fontFamily="FontAwesome" icon="SEARCH" /></graphic>
+		</Button>
+	</HBox>
+
+	<WebView fx:id="webView" VBox.vgrow="ALWAYS" />
+
+	<stylesheets>
+		<URL value="@/css/default.css" />
+	</stylesheets>
+
+</VBox>

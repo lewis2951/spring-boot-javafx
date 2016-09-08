@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.controlsfx.control.StatusBar;
 import org.controlsfx.dialog.ExceptionDialog;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.GlyphFont;
+import org.controlsfx.glyphfont.Glyph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -17,19 +15,14 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import hello.configs.BootInitializable;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 @Component
 public class HomeController implements BootInitializable {
@@ -42,11 +35,16 @@ public class HomeController implements BootInitializable {
 	private LoginController loginController;
 	@Autowired
 	private WelcomeController welcomeController;
+	@Autowired
+	private WebsiteController websiteController;
 
 	@FXML
 	private ToolBar toolBar;
 	@FXML
-	private StatusBar statusBar;
+	private ScrollPane content;
+
+	@FXML
+	private Glyph closeBtn;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -79,70 +77,21 @@ public class HomeController implements BootInitializable {
 	}
 
 	private void initToolBar() {
-		GlyphFont fontAwesome = springContext.getBean(GlyphFont.class);
-
-		Button home = new Button("", fontAwesome.create(FontAwesome.Glyph.HOME));
-
-		Button bars = new Button("", fontAwesome.create(FontAwesome.Glyph.BARS));
-
-		Button globe = new Button("", fontAwesome.create(FontAwesome.Glyph.GLOBE));
-
-		Button sign_in = new Button("", fontAwesome.create(FontAwesome.Glyph.SIGN_IN));
-
-		Button sign_out = new Button("", fontAwesome.create(FontAwesome.Glyph.SIGN_OUT));
-
-		Button power_off = new Button("", fontAwesome.create(FontAwesome.Glyph.POWER_OFF).color(Color.BROWN));
-		power_off.setOnAction(event -> {
-			close();
-		});
-
-		toolBar.getItems().clear();
-		toolBar.getItems().addAll(home, bars, globe, sign_in, sign_out, power_off);
-	}
-
-	public void setLayout(Node node) {
-		DoubleProperty opacity = node.opacityProperty();
-		node.setOpacity(0.0);
-		// context.setCenter(node);
-		Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
-				new KeyFrame(new Duration(1000), new KeyValue(opacity, 1.0)));
-		fadeIn.play();
-		// context.getCenter().autosize();
+		closeBtn.color(Color.BROWN);
 	}
 
 	@FXML
-	public void showWelcome() {
+	public void showWebsite() {
 		try {
-			setLayout(welcomeController.initView());
-			welcomeController.initConstuct();
-
+			Node node = websiteController.initView();
+			content.setContent(node);
+			websiteController.initConstuct();
 		} catch (Exception e) {
-			logger.error("欢迎页面加载异常", e);
-
 			Stage stage = springContext.getBean(Stage.class);
 
 			ExceptionDialog ex = new ExceptionDialog(e);
 			ex.initOwner(stage);
 			ex.show();
-
-		}
-	}
-
-	@FXML
-	public void showLogin() {
-		try {
-			setLayout(loginController.initView());
-			loginController.initConstuct();
-
-		} catch (Exception e) {
-			logger.error("登录页面加载异常", e);
-
-			Stage stage = springContext.getBean(Stage.class);
-
-			ExceptionDialog ex = new ExceptionDialog(e);
-			ex.initOwner(stage);
-			ex.show();
-
 		}
 	}
 
