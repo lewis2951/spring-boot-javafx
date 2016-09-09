@@ -14,26 +14,25 @@
 		<Insets left="0" right="0" top="0" bottom="0" />
 	</padding>
 
-	<HBox spacing="3">
+	<HBox fx:id="toolBox" spacing="3">
 		<padding>
 			<Insets left="3" right="3" top="3" bottom="3" />
 		</padding>
 
-		<Button fx:id="lastBtn">
+		<Button fx:id="lastBtn" onAction="#lastAction">
 			<graphic><Glyph fontFamily="FontAwesome" icon="ARROW_LEFT" /></graphic>
 		</Button>
-		<Button fx:id="nextBtn">
+		<Button fx:id="nextBtn" onAction="#nextAction">
 			<graphic><Glyph fontFamily="FontAwesome" icon="ARROW_RIGHT" /></graphic>
 		</Button>
-		<Button fx:id="repeatBtn">
+		<Button fx:id="repeatBtn" onAction="#repeatAction">
 			<graphic><Glyph fontFamily="FontAwesome" icon="REPEAT" /></graphic>
 		</Button>
-		<TextField fx:id="locationField" HBox.hgrow="ALWAYS"
-			onAction="#goAction" />
-
-		<Button onAction="#goAction">
-			<graphic><Glyph fontFamily="FontAwesome" icon="SEARCH" /></graphic>
+		<Button fx:id="closeBtn" onAction="#closeAction">
+			<graphic><Glyph fontFamily="FontAwesome" icon="CLOSE" /></graphic>
 		</Button>
+
+		<TextField fx:id="locationField" HBox.hgrow="ALWAYS" onAction="#goAction" />
 	</HBox>
 
 	<WebView fx:id="webView" VBox.vgrow="ALWAYS" />

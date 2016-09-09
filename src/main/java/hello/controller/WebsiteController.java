@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -31,15 +32,21 @@ public class WebsiteController implements BootInitializable {
 	private WebEngine webEngine;
 
 	@FXML
-	private WebView webView;
-	@FXML
-	private TextField locationField;
+	private HBox toolBox;
 	@FXML
 	private Button lastBtn;
 	@FXML
 	private Button nextBtn;
 	@FXML
 	private Button repeatBtn;
+	@FXML
+	private Button closeBtn;
+
+	@FXML
+	private TextField locationField;
+
+	@FXML
+	private WebView webView;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -68,27 +75,67 @@ public class WebsiteController implements BootInitializable {
 
 	@Override
 	public void initConstuct() {
+		logger.info("WebsiteController.initConstuct()");
+
 		webEngine = webView.getEngine();
-		webEngine.locationProperty()
-				.addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-					locationField.setText(newValue);
-				});
+		lastBtn.setDisable(true);
+		nextBtn.setDisable(true);
+		toolBox.getChildren().remove(closeBtn);
 
 		webEngine.getLoadWorker().stateProperty()
 				.addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
-					if (newState == State.SUCCEEDED) {
-						// repeatBtn.setGraphic(value);
-					} else {
+					int currentIndex = webEngine.getHistory().getCurrentIndex();
+					int maxIndex = webEngine.getHistory().getEntries().size() == 0 ? 0
+							: webEngine.getHistory().getEntries().size() - 1;
 
+					if (newState == State.SUCCEEDED) {
+						lastBtn.setDisable(currentIndex == 0);
+						nextBtn.setDisable(currentIndex == maxIndex);
+
+						toolBox.getChildren().add(toolBox.getChildren().indexOf(closeBtn), repeatBtn);
+						toolBox.getChildren().remove(closeBtn);
+					}
+
+					if (newState == State.RUNNING) {
+						toolBox.getChildren().add(toolBox.getChildren().indexOf(repeatBtn), closeBtn);
+						toolBox.getChildren().remove(repeatBtn);
 					}
 				});
 
+		webEngine.locationProperty()
+				.addListener((ObservableValue<? extends String> ov, String oldValue, String newValue) -> {
+					locationField.setText(newValue);
+				});
+	}
+
+	@FXML
+	public void lastAction() {
+		webEngine.getHistory().go(-1);
+	}
+
+	@FXML
+	public void nextAction() {
+		webEngine.getHistory().go(+1);
+	}
+
+	@FXML
+	public void repeatAction() {
+		webEngine.reload();
+	}
+
+	@FXML
+	public void closeAction() {
+		webEngine.getLoadWorker().cancel();
 	}
 
 	@FXML
 	public void goAction() {
-		webEngine.load(locationField.getText().startsWith("http://") ? locationField.getText()
-				: "http://" + locationField.getText());
+		String url = locationField.getText();
+		if (!url.startsWith("http://") && !url.startsWith("https://")) {
+			url = "http://" + url;
+		}
+
+		webEngine.load(url);
 	}
 
 }
