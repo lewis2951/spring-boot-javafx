@@ -10,26 +10,31 @@
 <?import org.controlsfx.glyphfont.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
-
 	<top>
 		<ToolBar fx:id="toolBar">
 			<items>
 				<Button>
+					<tooltip><Tooltip text="Home" /></tooltip>
 					<graphic><Glyph fontFamily="FontAwesome" icon="HOME" /></graphic>
 				</Button>
-				<Button>
+				<ToggleButton>
+					<tooltip><Tooltip text="Menus" /></tooltip>
 					<graphic><Glyph fontFamily="FontAwesome" icon="BARS" /></graphic>
-				</Button>
+				</ToggleButton>
 				<Button onAction="#showWebsite">
+					<tooltip><Tooltip text="Web" /></tooltip>
 					<graphic><Glyph fontFamily="FontAwesome" icon="GLOBE" /></graphic>
 				</Button>
 				<Button>
+					<tooltip><Tooltip text="Sign In" /></tooltip>
 					<graphic><Glyph fontFamily="FontAwesome" icon="SIGN_IN" /></graphic>
 				</Button>
 				<Button>
+					<tooltip><Tooltip text="Sign Out" /></tooltip>
 					<graphic><Glyph fontFamily="FontAwesome" icon="SIGN_OUT" /></graphic>
 				</Button>
 				<Button onAction="#close">
+					<tooltip><Tooltip text="Close" /></tooltip>
 					<graphic><Glyph fx:id="closeBtn" fontFamily="FontAwesome" icon="POWER_OFF" /></graphic>
 				</Button>
 			</items>

@@ -61,7 +61,6 @@ public class MainApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Task<Object> worker = new Task<Object>() {
-
 			@Override
 			protected Object call() throws Exception {
 				springContext = SpringApplication.run(MainApplication.class, mainArgs);
@@ -83,11 +82,10 @@ public class MainApplication extends Application {
 				stage.show();
 
 				homeController.initConstuct();
-//				homeController.showWelcome();
+				// homeController.showWelcome();
 
 				Notifications.create().title("标题").text("内容").position(Pos.BOTTOM_RIGHT).hideAfter(Duration.seconds(5))
 						.showInformation();
-
 			} catch (Exception ex) {
 				logger.error("Loading Application Error.", ex);
 			}
@@ -100,7 +98,6 @@ public class MainApplication extends Application {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setContentText("Loading Spring Failing, Application will shutdown now.");
 				alert.show();
-
 			} catch (Exception ex) {
 				logger.error("Shutdown Application Error.", ex);
 			}

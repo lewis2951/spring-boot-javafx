@@ -73,10 +73,11 @@ public class HomeController implements BootInitializable {
 
 	@Override
 	public void initConstuct() {
-		initToolBar();
+		logger.info("HomeController.initConstuct()");
+		initToolBars();
 	}
 
-	private void initToolBar() {
+	private void initToolBars() {
 		closeBtn.color(Color.BROWN);
 	}
 

@@ -34,13 +34,13 @@ public class WebsiteController implements BootInitializable {
 	@FXML
 	private HBox toolBox;
 	@FXML
-	private Button lastBtn;
+	private Button backBtn;
 	@FXML
-	private Button nextBtn;
+	private Button forwardBtn;
 	@FXML
-	private Button repeatBtn;
+	private Button reloadBtn;
 	@FXML
-	private Button closeBtn;
+	private Button stopLoadingBtn;
 
 	@FXML
 	private TextField locationField;
@@ -78,9 +78,9 @@ public class WebsiteController implements BootInitializable {
 		logger.info("WebsiteController.initConstuct()");
 
 		webEngine = webView.getEngine();
-		lastBtn.setDisable(true);
-		nextBtn.setDisable(true);
-		toolBox.getChildren().remove(closeBtn);
+		backBtn.setDisable(true);
+		forwardBtn.setDisable(true);
+		toolBox.getChildren().remove(stopLoadingBtn);
 
 		webEngine.getLoadWorker().stateProperty()
 				.addListener((ObservableValue<? extends State> ov, State oldState, State newState) -> {
@@ -89,16 +89,16 @@ public class WebsiteController implements BootInitializable {
 							: webEngine.getHistory().getEntries().size() - 1;
 
 					if (newState == State.SUCCEEDED) {
-						lastBtn.setDisable(currentIndex == 0);
-						nextBtn.setDisable(currentIndex == maxIndex);
+						backBtn.setDisable(currentIndex == 0);
+						forwardBtn.setDisable(currentIndex == maxIndex);
 
-						toolBox.getChildren().add(toolBox.getChildren().indexOf(closeBtn), repeatBtn);
-						toolBox.getChildren().remove(closeBtn);
+						toolBox.getChildren().add(toolBox.getChildren().indexOf(stopLoadingBtn), reloadBtn);
+						toolBox.getChildren().remove(stopLoadingBtn);
 					}
 
 					if (newState == State.RUNNING) {
-						toolBox.getChildren().add(toolBox.getChildren().indexOf(repeatBtn), closeBtn);
-						toolBox.getChildren().remove(repeatBtn);
+						toolBox.getChildren().add(toolBox.getChildren().indexOf(reloadBtn), stopLoadingBtn);
+						toolBox.getChildren().remove(reloadBtn);
 					}
 				});
 
@@ -109,22 +109,22 @@ public class WebsiteController implements BootInitializable {
 	}
 
 	@FXML
-	public void lastAction() {
+	public void backAction() {
 		webEngine.getHistory().go(-1);
 	}
 
 	@FXML
-	public void nextAction() {
+	public void forwardAction() {
 		webEngine.getHistory().go(+1);
 	}
 
 	@FXML
-	public void repeatAction() {
+	public void reloadAction() {
 		webEngine.reload();
 	}
 
 	@FXML
-	public void closeAction() {
+	public void stopLoadingAction() {
 		webEngine.getLoadWorker().cancel();
 	}
 

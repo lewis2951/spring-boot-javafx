@@ -19,16 +19,20 @@
 			<Insets left="3" right="3" top="3" bottom="3" />
 		</padding>
 
-		<Button fx:id="lastBtn" onAction="#lastAction">
+		<Button fx:id="backBtn" onAction="#backAction">
+			<tooltip><Tooltip text="Go Back" /></tooltip>
 			<graphic><Glyph fontFamily="FontAwesome" icon="ARROW_LEFT" /></graphic>
 		</Button>
-		<Button fx:id="nextBtn" onAction="#nextAction">
+		<Button fx:id="forwardBtn" onAction="#forwardAction">
+			<tooltip><Tooltip text="Go Forward" /></tooltip>
 			<graphic><Glyph fontFamily="FontAwesome" icon="ARROW_RIGHT" /></graphic>
 		</Button>
-		<Button fx:id="repeatBtn" onAction="#repeatAction">
+		<Button fx:id="reloadBtn" onAction="#reloadAction">
+			<tooltip><Tooltip text="Reload Page" /></tooltip>
 			<graphic><Glyph fontFamily="FontAwesome" icon="REPEAT" /></graphic>
 		</Button>
-		<Button fx:id="closeBtn" onAction="#closeAction">
+		<Button fx:id="stopLoadingBtn" onAction="#stopLoadingAction">
+			<tooltip><Tooltip text="Stop Loading" /></tooltip>
 			<graphic><Glyph fontFamily="FontAwesome" icon="CLOSE" /></graphic>
 		</Button>
 
