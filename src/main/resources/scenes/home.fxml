@@ -11,7 +11,7 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 	<top>
-		<ToolBar fx:id="toolBar">
+		<ToolBar>
 			<items>
 				<Button>
 					<tooltip><Tooltip text="Home" /></tooltip>

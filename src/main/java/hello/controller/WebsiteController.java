@@ -92,13 +92,11 @@ public class WebsiteController implements BootInitializable {
 						backBtn.setDisable(currentIndex == 0);
 						forwardBtn.setDisable(currentIndex == maxIndex);
 
-						toolBox.getChildren().add(toolBox.getChildren().indexOf(stopLoadingBtn), reloadBtn);
-						toolBox.getChildren().remove(stopLoadingBtn);
+						changeButton(stopLoadingBtn, reloadBtn);
 					}
 
 					if (newState == State.RUNNING) {
-						toolBox.getChildren().add(toolBox.getChildren().indexOf(reloadBtn), stopLoadingBtn);
-						toolBox.getChildren().remove(reloadBtn);
+						changeButton(reloadBtn, stopLoadingBtn);
 					}
 				});
 
@@ -106,6 +104,16 @@ public class WebsiteController implements BootInitializable {
 				.addListener((ObservableValue<? extends String> ov, String oldValue, String newValue) -> {
 					locationField.setText(newValue);
 				});
+	}
+
+	private void changeButton(Button oldButton, Button newButton) {
+		int btnIndex = toolBox.getChildren().indexOf(oldButton);
+		if (btnIndex == -1) {
+			return;
+		}
+
+		toolBox.getChildren().add(btnIndex, newButton);
+		toolBox.getChildren().remove(oldButton);
 	}
 
 	@FXML

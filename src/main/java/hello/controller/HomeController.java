@@ -20,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ToolBar;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -38,8 +37,6 @@ public class HomeController implements BootInitializable {
 	@Autowired
 	private WebsiteController websiteController;
 
-	@FXML
-	private ToolBar toolBar;
 	@FXML
 	private ScrollPane content;
 
@@ -74,10 +71,6 @@ public class HomeController implements BootInitializable {
 	@Override
 	public void initConstuct() {
 		logger.info("HomeController.initConstuct()");
-		initToolBars();
-	}
-
-	private void initToolBars() {
 		closeBtn.color(Color.BROWN);
 	}
 

@@ -48,12 +48,12 @@ public class MainApplication extends Application {
 	@Bean
 	public Stage getStage() {
 		Stage newStage = new Stage(StageStyle.DECORATED);
-		newStage.setTitle("JavaFX by Spring Boot 1.4.0.RELEASE");
+		newStage.setTitle("JavaFX by Spring Boot");
 		return newStage;
 	}
 
 	public static void main(String[] args) {
-		Locale.setDefault(new Locale("zh", "CN"));
+		Locale.setDefault(Locale.CHINA);
 		mainArgs = args;
 		Application.launch(MainApplication.class, args);
 	}
